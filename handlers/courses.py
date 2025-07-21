@@ -13,6 +13,7 @@ async def show_courses(callback: CallbackQuery):
         "Соробан предлагает не только ментальную арифметику, но и другие развивающие курсы.\n\n"
         "Выберите понравившийся курс ниже, чтобы узнать подробности:"
     )
+
     await callback.message.answer_photo(photo=image, caption=caption, reply_markup=courses_kb)
     await callback.answer()
 
