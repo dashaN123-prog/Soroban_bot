@@ -4,7 +4,7 @@ from keyboards.main_menu import main_menu
 
 router = Router()
 
-async def show_main_menu(target: Message):
+async def show_main_menu(target):
     photo = FSInputFile("media/images/description.png")
     text = (
         "✨ <b>Ментальная арифметика</b> — это способ развития интеллекта детей через устный счёт. "
@@ -22,21 +22,11 @@ async def show_main_menu(target: Message):
 async def cmd_start(message: Message):
     await show_main_menu(message)
 
-@router.callback_query(F.data == "back_to_main")
-async def back_to_main(callback: CallbackQuery):
-    try:
-        await callback.message.delete()
-    except:
-        pass
-    await show_main_menu(callback.message)
-    await callback.answer()
-
 @router.callback_query(F.data == "back_to_start")
 async def back_to_start(callback: CallbackQuery):
     try:
         await callback.message.delete()
-    except:
+    except Exception:
         pass
     await show_main_menu(callback.message)
     await callback.answer()
-

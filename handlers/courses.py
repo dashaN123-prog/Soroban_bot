@@ -2,7 +2,6 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, FSInputFile
 from keyboards.courses_kb import courses_kb, course_info_kb
 from keyboards.course_details_kb import course_detail_kb
-from keyboards.success_kb import success_kb
 
 router = Router()
 
