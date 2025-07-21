@@ -3,10 +3,10 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 main_menu = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="🔍 Ментальная арифметика", callback_data="about_arithmetic"),
-        InlineKeyboardButton(text="📚 Курсы", callback_data="courses")
+        InlineKeyboardButton(text="📚 Курсы", callback_data="courses"),
     ],
     [
-        InlineKeyboardButton(text="🎓 Успехи учеников", callback_data="success"),
+        InlineKeyboardButton(text="🎓 Успехи учеников", callback_data="success_1"),  # Начинаем с видео 1
         InlineKeyboardButton(text="💬 Отзывы", callback_data="reviews")
     ],
     [
