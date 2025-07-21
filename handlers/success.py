@@ -51,7 +51,8 @@ async def paginate_success(callback: CallbackQuery):
         buttons.append(InlineKeyboardButton(text="◀️", callback_data=f"success:{index-1}"))
     if index < len(video_files) - 1:
         buttons.append(InlineKeyboardButton(text="▶️", callback_data=f"success:{index+1}"))
-    buttons.append(InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_courses"))
+    InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")
+
 
     kb = InlineKeyboardMarkup(inline_keyboard=[buttons])
     await callback.message.answer_video(video, caption="🎓 Успехи учеников", reply_markup=kb)
