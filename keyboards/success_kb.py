@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-success_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="🎓 Успехи учеников", callback_data="show_success")]
+success_back_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_start")]
 ])

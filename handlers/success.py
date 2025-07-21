@@ -5,6 +5,8 @@ from aiogram.types import (
     InlineKeyboardButton, FSInputFile
 )
 
+from handlers.start import show_main_menu
+
 router = Router()
 VIDEO_FOLDER = "media/videos/success"
 
@@ -58,3 +60,14 @@ async def paginate_success(callback: CallbackQuery):
     await callback.message.answer_video(video, caption="🎓 Успехи учеников", reply_markup=kb)
     await callback.message.delete()
     await callback.answer()
+
+
+@router.callback_query(F.data == "back_to_start")
+async def back_to_start(callback: CallbackQuery):
+    try:
+        await callback.message.delete()
+    except Exception:
+        pass
+    await show_main_menu(callback.message)
+    await callback.answer()
+
