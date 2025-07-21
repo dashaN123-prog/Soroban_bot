@@ -30,3 +30,13 @@ async def back_to_main(callback: CallbackQuery):
         pass
     await show_main_menu(callback.message)
     await callback.answer()
+
+@router.callback_query(F.data == "back_to_start")
+async def back_to_start(callback: CallbackQuery):
+    try:
+        await callback.message.delete()
+    except:
+        pass
+    await show_main_menu(callback.message)
+    await callback.answer()
+
