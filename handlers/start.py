@@ -1,10 +1,10 @@
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, FSInputFile, InputMediaPhoto
+from aiogram.types import Message, CallbackQuery, FSInputFile
 from keyboards.main_menu import main_menu
 
 router = Router()
 
-async def show_main_menu(target):
+async def show_main_menu(bot, chat_id):
     photo = FSInputFile("media/images/description.png")
     text = (
         "✨ <b>Ментальная арифметика</b> — это способ развития интеллекта детей через устный счёт. "
@@ -18,21 +18,18 @@ async def show_main_menu(target):
 
         "👇 <b>Выберите интересующий раздел:</b>"
     )
-    if isinstance(target, CallbackQuery):
-        await target.message.edit_media(
-            media=InputMediaPhoto(media=photo, caption=text, parse_mode="HTML"),
-            reply_markup=main_menu
-        )
-    else:
-        await target.answer_photo(photo=photo, caption=text, reply_markup=main_menu)
-
+    await bot.send_photo(chat_id=chat_id, photo=photo, caption=text, reply_markup=main_menu)
 
 @router.message(F.text == "/start")
 async def cmd_start(message: Message):
-    await show_main_menu(message)
-
+    # Передаем bot и chat_id в show_main_menu
+    await show_main_menu(message.bot, message.chat.id)
 
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main(callback: CallbackQuery):
-    await show_main_menu(callback)
+    try:
+        await callback.message.delete()
+    except Exception:
+        pass
+    await show_main_menu(callback.bot, callback.message.chat.id)
     await callback.answer()
