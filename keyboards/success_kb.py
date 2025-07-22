@@ -11,4 +11,5 @@ def get_success_kb(current_page: int, total: int):
             InlineKeyboardButton(text="➡️", callback_data=f"success_{next_page}"),
         ]
     ])
+
     return keyboard
